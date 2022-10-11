@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Shark : MonoBehaviour
+public class Fish : MonoBehaviour
 {
     public float wanderRadius;
     public float wanderTimer;
-    public float wanderSpeed = 3.5f;
-    public float chaseSpeed = 7f;
-    public Transform player;
-
     private NavMeshAgent agent;
     private float timer;
     private Vector3 destination;
-    private bool alerted = false;
 
-    public delegate void Chomp();
-    public event Chomp ChompedYa;
+    public delegate void Collected();
+    public event Collected FishSnack;
 
     // Use this for initialization
     void OnEnable()
@@ -30,22 +25,14 @@ public class Shark : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-
-        if(alerted)
+        if (timer >= wanderTimer)
         {
-            agent.SetDestination(player.position);
-            agent.speed = chaseSpeed;
-        } else
-        {
-            agent.speed = wanderSpeed;
-            if (timer >= wanderTimer)
-            {
-                Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
-                destination = newPos;
-                timer = 0;
-            }
-            agent.SetDestination(Vector3.Lerp(agent.destination, destination, 0.5f * Time.deltaTime));
+            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+            destination = newPos;
+            timer = 0;
         }
+        agent.SetDestination(Vector3.Lerp(agent.destination, destination, 0.5f * Time.deltaTime));
+        
         transform.rotation = Quaternion.LookRotation(agent.velocity.normalized) * Quaternion.AngleAxis(90, Vector3.up);
     }
 
@@ -62,16 +49,13 @@ public class Shark : MonoBehaviour
         return navHit.position;
     }
 
-    public void OnSpotted(bool spotted)
-    {
-        alerted = spotted;
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            ChompedYa.Invoke();
+            FishSnack.Invoke();
+            gameObject.SetActive(false);
+            Destroy(this);
         }
     }
 }
