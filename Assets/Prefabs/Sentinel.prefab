@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5256121195343219685}
   - component: {fileID: 5256121195343219682}
   - component: {fileID: 5256121195343219683}
-  - component: {fileID: 5256121195343219684}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5256121195343219684
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5256121195343219686}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5256121195370686896
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5256121195370686911}
+  - component: {fileID: 521927582}
   m_Layer: 0
   m_Name: Sentinel
   m_TagString: Untagged
@@ -120,7 +107,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5256121195370686896}
-  m_LocalRotation: {x: 0.14999767, y: -0.3582987, z: 0.05844124, w: 0.9196235}
+  m_LocalRotation: {x: 0.15000091, y: -0.35829672, z: 0.0584422, w: 0.9196237}
   m_LocalPosition: {x: 706.0045, y: 3.2286036, z: 557.26917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -131,6 +118,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 18.528, y: -42.573, z: 0}
+--- !u!114 &521927582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5256121195370686896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa09af5f4359e194f8f66682c42395a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 15
+  chaseRotateSpeed: 60
+  player: {fileID: 0}
+  spotlight: {fileID: 5256121196528265427}
+  lightBulbGlow: {fileID: 2100000, guid: cf6ec21797fd1a04c8e70495a6abb4eb, type: 2}
+  lightBulbOff: {fileID: 2100000, guid: ddc9d0d805c9c3b4a8685366fde65c86, type: 2}
+  lightBulb: {fileID: 5256121196738985079}
 --- !u!1 &5256121196528265429
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,9 +182,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 30000000
-  m_Range: 10
-  m_SpotAngle: 69
+  m_Intensity: 20000000
+  m_Range: 30
+  m_SpotAngle: 39
   m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
@@ -238,10 +244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 3000
+  m_Intensity: 2000
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 100
-  m_InnerSpotPercent: 17.1
+  m_InnerSpotPercent: 10.2
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1.9
@@ -359,7 +365,6 @@ GameObject:
   - component: {fileID: 5256121196738985033}
   - component: {fileID: 5256121196738985078}
   - component: {fileID: 5256121196738985079}
-  - component: {fileID: 5256121196738985032}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -432,17 +437,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5256121196738985032
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5256121196738985034}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
