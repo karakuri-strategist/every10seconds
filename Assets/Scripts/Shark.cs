@@ -16,6 +16,9 @@ public class Shark : MonoBehaviour
     private Vector3 destination;
     private bool alerted = false;
 
+    public delegate void Chomp();
+    public event Chomp ChompedYa;
+
     // Use this for initialization
     void OnEnable()
     {
@@ -62,5 +65,13 @@ public class Shark : MonoBehaviour
     public void OnSpotted(bool spotted)
     {
         alerted = spotted;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            ChompedYa.Invoke();
+        }
     }
 }
